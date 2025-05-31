@@ -16,7 +16,7 @@ function userForgotPasswdMail(c1, c2, userMail) {
 
     // E-posta bilgileri
     let mailOptions = {
-        from: 'semihsaygin3021@gmail.com', // Gönderici
+        from: 'mailadresiniz@gmail.com', // Gönderici
         to: userMail, // Alıcı
         subject: 'Şifre Sıfırlama', // Konu
         html: `
@@ -49,7 +49,7 @@ function userRegisterMail(c1, c2, email) {
 
     // E-posta bilgileri
     let mailOptions = {
-        from: 'semihsaygin3021@gmail.com', // Gönderici
+        from: 'mailadresiniz@gmail.com', // Gönderici
         to: email, // Alıcı
         subject: 'Hesabınızı doğrulayın', // Konu
         html: `
