@@ -1,0 +1,37 @@
+.search-wrapper {
+    display: flex;
+}
+
+.nav-link:hover {
+    background-color: gray;
+}
+
+header {
+    padding: 5px;
+}
+
+.brand-text {
+    display: none;
+    font-size: 20px;
+}
+
+.responsive-search {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+
+@media (max-width: 750px) {
+    .brand-text {
+        display: block;
+    }
+
+    .search-wrapper {
+        display: none;
+    }
+
+    .responsive-search {
+        display: flex;
+    }
+}
