@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import '../globals.css'
 import './page.css'
 import axios from 'axios';
+const { v4: uuidv4 } = require('uuid');
 
 const Register = () => {
     const [logo, setLogo] = useState("/logo.png");
@@ -25,8 +26,8 @@ const Register = () => {
         const userMail = refMail.current.value;
         const userPassword = refPassword.current.value;
         const userRePassword = refRePassword.current.value;
-        const userName = refName.current.value;
-        const userSurname = refSurname.current.value;
+        const userName = String(refName.current.value).toUpperCase();
+        const userSurname = String(refSurname.current.value).toUpperCase();
 
         // Hesap doğrulama kodu oluşturma fonskiyonu
         function createApprovedCode() {
@@ -61,7 +62,8 @@ const Register = () => {
                     userPassword,
                     userName,
                     userSurname,
-                    Approved
+                    Approved,
+                    sessionid: uuidv4()
                 }).then(response => {
                     // Kayıt işlemi başarılıysa response 1 döner
                     if (response.data == 1) {

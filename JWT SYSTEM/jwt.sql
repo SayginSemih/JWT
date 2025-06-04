@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 31, 2025 at 08:45 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Anamakine: localhost
+-- Üretim Zamanı: 04 Haz 2025, 19:39:54
+-- Sunucu sürümü: 10.4.28-MariaDB
+-- PHP Sürümü: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eticaret`
+-- Veritabanı: `eticaret`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Tablo için tablo yapısı `admin`
 --
 
 CREATE TABLE `admin` (
@@ -37,11 +37,12 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tablo için tablo yapısı `users`
 --
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
+  `sessionid` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
@@ -55,18 +56,10 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `username`, `phone`, `email`, `name`, `surname`, `passwd`, `approved`, `approved_code`, `VIP`, `created_at`, `updated_at`) VALUES
-(1, 'SEMIHSAYGIN', '5538828009', 'semihsaygin3021@outlook.com', 'SEMİH', 'SAYGIN', '$2b$10$Nc7t9Fge6zTlfO0MT/6CReVmrL2O3SYLFP3k5oWvkvsOx4BiFvszy', 1, 'HFTJSm', 0, '2024-08-22 00:00:42', '2025-05-31 18:34:39'),
-(3, 'TESTUSER', '5538828000', 'semihsaygin3020@outlook.com', 'TEST', 'TEST', '$2b$10$Nc7t9Fge6zTlfO0MT/6CReVmrL2O3SYLFP3k5oWvkvsOx4BiFvszy', 1, 'HFTJSm', 1, '2024-08-22 00:00:42', '2024-08-22 02:19:37');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userscode`
+-- Tablo için tablo yapısı `userscode`
 --
 
 CREATE TABLE `userscode` (
@@ -78,57 +71,50 @@ CREATE TABLE `userscode` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `userscode`
---
-
-INSERT INTO `userscode` (`code_id`, `cpcode`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'hnMbmI', 1, '2024-08-22 02:18:52', '2024-08-22 02:18:52');
-
---
--- Indexes for dumped tables
+-- Dökümü yapılmış tablolar için indeksler
 --
 
 --
--- Indexes for table `admin`
+-- Tablo için indeksler `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `users`
+-- Tablo için indeksler `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `userscode`
+-- Tablo için indeksler `userscode`
 --
 ALTER TABLE `userscode`
   ADD PRIMARY KEY (`code_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `userscode`
+-- Tablo için AUTO_INCREMENT değeri `userscode`
 --
 ALTER TABLE `userscode`
   MODIFY `code_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Dökümü yapılmış tablolar için kısıtlamalar
 --
 
 --
--- Constraints for table `userscode`
+-- Tablo kısıtlamaları `userscode`
 --
 ALTER TABLE `userscode`
   ADD CONSTRAINT `userscode_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;

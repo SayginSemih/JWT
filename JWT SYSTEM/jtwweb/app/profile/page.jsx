@@ -62,7 +62,8 @@ function profile() {
                 userSurname,
                 userMail,
                 userPhone,
-                userID: userdata.user_id
+                userID: userdata.user_id,
+                sessionid: userdata.sessionid
             }).then(response => {
                 if (response.data.status == 1) {
                     userUpdateMessage.current.innerHTML = `
@@ -117,7 +118,8 @@ function profile() {
                 if (pwdControl.length > 5) {
                     axios.post(process.env.NEXT_PUBLIC_SERVER + "/user-changepassword", {
                         userPassword,
-                        userID: userdata.user_id
+                        userID: userdata.user_id,
+                        sessionid: userdata.sessionid
                     }).then(response => {
                         if (response.data == "1") {
                             userChangePasswordMessage.current.innerHTML = `

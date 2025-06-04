@@ -18,7 +18,8 @@ function userRegister(req, res) {
             passwd: hashedPassword,
             name: req.body.userName,
             surname: req.body.userSurname,
-            approved_code: req.body.Approved
+            approved_code: req.body.Approved,
+            sessionid: req.body.sessionid
         };
 
         if (err) {
